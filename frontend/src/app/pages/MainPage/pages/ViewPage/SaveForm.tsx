@@ -193,13 +193,13 @@ export function SaveForm({ formProps, ...modalProps }: SaveFormProps) {
       </Form.Item>
       {!simple && initialValues?.config && (
         <>
-          <AdvancedToggle
+          {/* <AdvancedToggle
             type="link"
             icon={<DoubleRightOutlined rotate={advancedVisible ? -90 : 90} />}
             onClick={toggleAdvanced}
           >
             {t('advanced')}
-          </AdvancedToggle>
+          </AdvancedToggle> */}
           <AdvancedWrapper show={advancedVisible}>
             <Form.Item
               name={['config', 'concurrencyControl']}

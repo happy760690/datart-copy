@@ -35,6 +35,7 @@ import {
   saveView,
   unarchiveView,
   updateViewBase,
+  syncSourceSchema
 } from './thunks';
 import { Schema, ViewState, ViewViewModel } from './types';
 
@@ -50,6 +51,7 @@ export const initialState: ViewState = {
   saveViewLoading: false,
   unarchiveLoading: false,
   databaseSchemaLoading: false,
+  syncSourceSchemaLoading: false,
 };
 
 const slice = createSlice({
@@ -437,6 +439,22 @@ const slice = createSlice({
       }
       state.sourceDatabaseSchema[action.payload?.sourceId] =
         action.payload.data.schemaItems;
+    });
+
+    // syncSourceSchema
+    builder.addCase(syncSourceSchema.pending, state => {
+      state.syncSourceSchemaLoading = true;
+    });
+    builder.addCase(syncSourceSchema.rejected, state => {
+      state.syncSourceSchemaLoading = false;
+    });
+    builder.addCase(syncSourceSchema.fulfilled, (state, action) => {
+      state.syncSourceSchemaLoading = false;
+      if (!action.payload?.schemaItems) {
+        return;
+      }
+      state.sourceDatabaseSchema[action.payload?.sourceId] =
+        action.payload.schemaItems;
     });
   },
 });

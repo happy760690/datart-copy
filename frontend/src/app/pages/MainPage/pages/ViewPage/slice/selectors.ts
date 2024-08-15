@@ -123,3 +123,9 @@ export const selectDatabaseSchemaLoading = createSelector(
   [selectDomain],
   viewState => viewState.databaseSchemaLoading,
 );
+
+export const selectSyncSourceSchemaLoading = createSelector(
+  [selectDomain],
+  viewState => viewState.syncSourceSchemaLoading,
+);
+

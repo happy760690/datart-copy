@@ -81,6 +81,7 @@ export const Properties = memo(({ allowManage, viewType }: PropertiesProps) => {
         <Variables />
       </PaneWrapper>
       <PaneWrapper selected={selectedTab === 'reference'}>
+        <div>sadklfjsdlfkjl</div>
         <Resource />
       </PaneWrapper>
       <PaneWrapper selected={selectedTab === 'model'}>

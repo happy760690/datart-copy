@@ -46,6 +46,7 @@ export interface ViewState {
   saveViewLoading: boolean;
   unarchiveLoading: boolean;
   databaseSchemaLoading: boolean;
+  syncSourceSchemaLoading: boolean;
 }
 
 export type DatabaseSchema = {

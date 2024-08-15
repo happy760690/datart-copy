@@ -33,6 +33,7 @@ import {
   Row,
   Space,
   TreeDataNode,
+  message
 } from 'antd';
 import { Tree } from 'app/components';
 import { DataViewFieldType } from 'app/constants';
@@ -52,8 +53,9 @@ import {
   selectCurrentEditingViewAttr,
   selectDatabaseSchemaLoading,
   selectSourceDatabaseSchemas,
+  selectSyncSourceSchemaLoading,
 } from '../../slice/selectors';
-import { getEditorProvideCompletionItems } from '../../slice/thunks';
+import { getEditorProvideCompletionItems, syncSourceSchema } from '../../slice/thunks';
 import { DatabaseSchema } from '../../slice/types';
 import { buildAntdTreeNodeModel } from '../../utils';
 import Container from './Container';
@@ -63,12 +65,14 @@ export const Resource = memo(() => {
   const dispatch = useDispatch();
   const { editorCompletionItemProviderRef } = useContext(EditorContext);
   const isDatabaseSchemaLoading = useSelector(selectDatabaseSchemaLoading);
+  const isSyncSourceSchemaLoading = useSelector(selectSyncSourceSchemaLoading)
   const sourceId = useSelector<RootState>(state =>
     selectCurrentEditingViewAttr(state, { name: 'sourceId' }),
   ) as string;
   const databaseSchemas = useSelector(state =>
     selectSourceDatabaseSchemas(state, { id: sourceId }),
   );
+  const syncSourceSchemaLoading = useSelector(selectSyncSourceSchemaLoading);
   const [databaseTreeModel, setDatabaseTreeModel] = useState<TreeDataNode[]>(
     [],
   );
@@ -189,11 +193,24 @@ export const Resource = memo(() => {
     );
   }, [handleMenuClick, t]);
 
+  const handleSyncDatabase = async () => {
+    console.log('tongbushuju-----', sourceId)
+    await dispatch(syncSourceSchema({ sourceId: sourceId }));
+    // setLastUpdateTime(moment().format(TIME_FORMATTER));
+    message.success(t('syncDatabaseSchemaSuccess'));
+  };
+
   return (
     <Container title="reference">
       <SearchBar>
         <Col span={24}>
           <StyleSpace>
+            <span>{syncSourceSchemaLoading} ----</span>
+            <Button type="primary"
+              className='sync-button'
+              loading={isSyncSourceSchemaLoading}
+              onClick={ handleSyncDatabase }
+              >{t('syncDataButton')}</Button>
             <Input
               prefix={<SearchOutlined className="icon" />}
               placeholder={t('search')}
@@ -224,6 +241,12 @@ export const Resource = memo(() => {
 });
 
 const SearchBar = styled(Row)`
+  .sync-button {
+    position: absolute;
+    top: -50px;
+    right: 10px;
+  }
+
   .input {
     padding-bottom: ${SPACE_XS};
   }

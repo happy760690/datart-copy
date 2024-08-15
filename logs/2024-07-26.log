@@ -815,3 +815,13 @@ java.sql.SQLSyntaxErrorException: Table 'test1115.testy01' doesn't exist
 2024-07-26 11:26:57.094 [http-nio-0.0.0.0-8080-exec-6] INFO  com.alibaba.druid.pool.DruidDataSource : {dataSource-11} inited
 2024-07-26 11:41:17.607 [http-nio-0.0.0.0-8080-exec-9] INFO  d.data.provider.jdbc.DataSourceFactoryDruidImpl : druid data source created (DataSource-94119171)
 2024-07-26 11:41:17.722 [http-nio-0.0.0.0-8080-exec-9] INFO  com.alibaba.druid.pool.DruidDataSource : {dataSource-12} inited
+2024-07-26 13:47:00.473 [SessionValidationThread-1] INFO  o.a.s.session.mgt.AbstractValidatingSessionManager : Validating all active sessions...
+2024-07-26 13:47:00.486 [SessionValidationThread-1] INFO  o.a.s.session.mgt.AbstractValidatingSessionManager : Finished session validation.  No sessions were stopped.
+2024-07-26 13:54:59.956 [http-nio-0.0.0.0-8080-exec-5] INFO  d.data.provider.jdbc.DataSourceFactoryDruidImpl : druid data source created (DataSource-754565937)
+2024-07-26 13:55:00.019 [http-nio-0.0.0.0-8080-exec-5] INFO  com.alibaba.druid.pool.DruidDataSource : {dataSource-13} inited
+2024-07-26 14:09:37.933 [http-nio-0.0.0.0-8080-exec-4] INFO  d.data.provider.jdbc.DataSourceFactoryDruidImpl : druid data source created (DataSource-1571832344)
+2024-07-26 14:09:38.009 [http-nio-0.0.0.0-8080-exec-4] INFO  com.alibaba.druid.pool.DruidDataSource : {dataSource-14} inited
+2024-07-26 16:52:45.109 [SessionValidationThread-1] INFO  o.a.s.session.mgt.AbstractValidatingSessionManager : Validating all active sessions...
+2024-07-26 16:52:45.118 [SessionValidationThread-1] INFO  o.a.s.session.mgt.AbstractValidatingSessionManager : Finished session validation.  No sessions were stopped.
+2024-07-26 17:52:45.120 [SessionValidationThread-1] INFO  o.a.s.session.mgt.AbstractValidatingSessionManager : Validating all active sessions...
+2024-07-26 17:52:45.148 [SessionValidationThread-1] INFO  o.a.s.session.mgt.AbstractValidatingSessionManager : Finished session validation.  No sessions were stopped.

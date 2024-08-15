@@ -481,3 +481,16 @@ export const getEditorProvideCompletionItems = createAsyncThunk<
     return null;
   },
 );
+
+export const syncSourceSchema = createAsyncThunk<any, { sourceId: string }>(
+  'view/syncSourceSchema',
+  async ({ sourceId }, { dispatch }) => {
+    const { data } = await request2<any>({
+      url: `/sources/sync/schemas/${sourceId}`,
+      method: 'GET',
+    });
+    return {...data, sourceId };
+  },
+);
+
+

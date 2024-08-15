@@ -352,6 +352,7 @@ export function SourceDetailPage() {
                     {t('creatView')}
                   </Button>
                 )}
+                <span>shitushibu</span>
                 <Button
                   disabled={!Boolean(editingSource?.id)}
                   loading={syncSourceSchemaLoading}

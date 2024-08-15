@@ -517,9 +517,9 @@ const ChartDataViewPanel: FC<{
               ]}
             >
               <MenuListItem key="searchField">{t('searchField')}</MenuListItem>
-              <MenuListItem key="createComputedFields">
+              {/* <MenuListItem key="createComputedFields">
                 {t('createComputedFields')}
-              </MenuListItem>
+              </MenuListItem> */}
               <MenuListItem
                 disabled={dataView?.type !== 'STRUCT'}
                 title={t('Group')}

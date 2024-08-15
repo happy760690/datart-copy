@@ -92,7 +92,7 @@ export const NameSet: FC<{ wid: string; name: string; boardVizs: Widget[] }> =
               }),
             ]}
           >
-            <Input className="datart-ant-input" />
+            <Input className="datart-ant-input" maxLength={ 20 }/>
           </Form.Item>
         </Form>
       </Group>

@@ -136,7 +136,7 @@ export const SchemaTable = memo(
                       {tg(`columnType.${t.toLowerCase()}`)}
                     </Menu.Item>
                   ))}
-                  {hasCategory && (
+                  {/* {hasCategory && (
                     <>
                       <Menu.Divider />
                       <Menu.SubMenu
@@ -151,7 +151,7 @@ export const SchemaTable = memo(
                         ))}
                       </Menu.SubMenu>
                     </>
-                  )}
+                  )} */}
                 </Menu>
               }
             >

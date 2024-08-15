@@ -179,7 +179,7 @@ export function SaveForm({ formProps, ...modalProps }: SaveFormProps) {
           },
         ]}
       >
-        <Input />
+        <Input maxLength={ 20 }/>
       </Form.Item>
       <Form.Item name="parentId" label={parentIdLabel}>
         <TreeSelect

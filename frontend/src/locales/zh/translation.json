@@ -1369,7 +1369,9 @@
       "search": "搜索数据库 / 表 / 字段关键字",
       "sortType": "排序方式",
       "byName": "按名称",
-      "byField": "按字段"
+      "byField": "按字段",
+      "syncDatabaseSchemaSuccess": "已成功获取数据库模式",
+      "syncDataButton": "同步数据源"
     },
     "variable": {
       "title": "变量配置",

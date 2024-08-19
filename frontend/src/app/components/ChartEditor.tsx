@@ -576,6 +576,7 @@ export const ChartEditor: FC<ChartEditorProps> = ({
     if (!dataview?.id) {
       return;
     }
+    
     const isWidget = dataChartId.includes('widget');
     const builder = new ChartDataRequestBuilder(
       dataview,
@@ -635,7 +636,9 @@ export const ChartEditor: FC<ChartEditorProps> = ({
   };
 
   return (
-    <StyledChartWorkbenchPage>
+<>
+<span>testttt</span>
+<StyledChartWorkbenchPage>
       <SaveFormContext.Provider value={saveFormContextValue}>
         <ChartWorkbench
           header={{
@@ -668,6 +671,7 @@ export const ChartEditor: FC<ChartEditorProps> = ({
           onCreateDownloadDataTask={handleCreateDownloadDataTask}
           onDateLevelChange={handleDateLevelChange}
         />
+
         <SaveForm
           width={400}
           formProps={{
@@ -679,6 +683,7 @@ export const ChartEditor: FC<ChartEditorProps> = ({
         />
       </SaveFormContext.Provider>
     </StyledChartWorkbenchPage>
+</>
   );
 };
 

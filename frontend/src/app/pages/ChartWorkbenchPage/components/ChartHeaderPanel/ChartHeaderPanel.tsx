@@ -98,6 +98,7 @@ const ChartHeaderPanel: FC<{
 
     return (
       <Wrapper>
+        <span>o9274326423096</span>
         <h1>{chartName}</h1>
         <Space>
           <DownloadListPopup
@@ -129,6 +130,7 @@ const ChartHeaderPanel: FC<{
               {t('saveToDashboard')}
             </Button>
           )}
+          <span>112233</span>
           <SaveToDashboard
             orgId={orgId as string}
             title={t('saveToDashboard')}

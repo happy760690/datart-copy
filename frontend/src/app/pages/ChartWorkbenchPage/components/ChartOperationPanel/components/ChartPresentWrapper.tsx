@@ -75,6 +75,7 @@ const ChartPresentWrapper: FC<{
               onChartChange={onChartChange}
             />
           </div>
+          <span>232fdf</span>
           <ChartPresentPanel
             containerHeight={
               (containerHeight || 0) -
@@ -92,7 +93,10 @@ const ChartPresentWrapper: FC<{
             selectedItems={selectedItems}
             dataView={dataView}
           />
+        <span>97adhf23</span>
+
         </ChartI18NContext.Provider>
+
       </StyledChartPresentWrapper>
     );
   },

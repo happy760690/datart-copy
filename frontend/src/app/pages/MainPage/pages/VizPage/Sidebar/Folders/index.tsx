@@ -89,9 +89,11 @@ export const Folders = memo(
       dispatch(getArchivedDashboards(orgId));
     }, [dispatch, orgId]);
 
+
     const add = useCallback(
       ({ key }) => {
         if (key === 'DATACHART') {
+          console.log(`/organizations/${orgId}/vizs/chartEditor`)
           history.push({
             pathname: `/organizations/${orgId}/vizs/chartEditor`,
             search: `dataChartId=&chartType=dataChart&container=dataChart`,
@@ -169,6 +171,7 @@ export const Folders = memo(
       <Wrapper className={className} defaultActiveKey="list">
         <ListPane key="list">
           <ListTitle {...titles[0]} />
+          <span>90909090</span>
           <FolderTree
             treeData={filteredTreeData}
             selectedId={selectedId}

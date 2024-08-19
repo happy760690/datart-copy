@@ -399,6 +399,7 @@ export class ChartDataRequestBuilder {
   }
 
   private buildOrders() {
+    console.log(this.chartDataConfigs,'this.chartDataConfigs');
     const sortColumns = this.chartDataConfigs
       .reduce<ChartDataSectionField[]>((acc, cur) => {
         if (!cur.rows) {
@@ -436,12 +437,13 @@ export class ChartDataRequestBuilder {
           col?.sort?.type &&
           [SortActionType.ASC, SortActionType.DESC].includes(col?.sort?.type),
       );
-
+        console.log(sortColumns, 'sortColumns')
     const originalSorters = sortColumns.map(aggCol => ({
       column: this.buildColumnName(aggCol),
       operator: aggCol.sort?.type!,
       aggOperator: aggCol.aggregate,
     }));
+    console.log(originalSorters, 'originalSorters')
 
     const _extraSorters = this.extraSorters
       ?.filter(({ column, operator }) => column && operator)
@@ -453,6 +455,7 @@ export class ChartDataRequestBuilder {
       });
 
     if (!isEmptyArray(_extraSorters)) {
+      console.log(_extraSorters,'_extraSorters');
       return _extraSorters;
     }
     return originalSorters.filter(sorter => Boolean(sorter?.operator));

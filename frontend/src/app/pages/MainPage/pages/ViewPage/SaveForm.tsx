@@ -100,6 +100,8 @@ export function SaveForm({ formProps, ...modalProps }: SaveFormProps) {
   const formRef = useRef<FormInstance>();
   const t = useI18NPrefix('view.saveForm');
   const tg = useI18NPrefix('global');
+  //规则校验
+  const REGEX = /^[a-zA-Z\u4e00-\u9fff][a-zA-Z0-9_\u4e00-\u9fff]{0,19}$/;
 
   useEffect(() => {
     if (initialValues) {
@@ -167,6 +169,9 @@ export function SaveForm({ formProps, ...modalProps }: SaveFormProps) {
                 return Promise.reject(
                   `${t('name')}${tg('validation.required')}`,
                 );
+              }
+              if (!REGEX.test(value)) {
+                return Promise.reject( '20个字符以内，必须是中文或英文开头，可包含中文、数字、英文字母、_' );
               }
               const parentId = formRef.current?.getFieldValue('parentId');
               const data = {

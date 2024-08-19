@@ -121,8 +121,8 @@ export const Sidebar = memo(
               simple: true,
               parentIdLabel: t('parent'),
               onSave: (values, onClose) => {
+                console.log(values,'values');
                 let index = getInsertedNodeIndex(values, viewsData);
-
                 dispatch(
                   saveFolder({
                     folder: {
@@ -209,6 +209,7 @@ export const Sidebar = memo(
         ) : (
           <></>
         )}
+        <span>222</span>
         <ListNavWrapper defaultActiveKey="list">
           <ListPane key="list">
             <ListTitle {...titles[0]} />

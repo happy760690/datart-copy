@@ -48,6 +48,8 @@ export function SaveForm({ formProps, ...modalProps }: SaveFormProps) {
   const formRef = useRef<FormInstance>();
   const t = useI18NPrefix('viz.saveForm');
   const tg = useI18NPrefix('global');
+    //规则校验
+  const REGEX = /^[a-zA-Z\u4e00-\u9fff][a-zA-Z0-9_\u4e00-\u9fff]{0,19}$/;
 
   const getDisabled = useCallback(
     (_, path: string[]) =>
@@ -128,6 +130,9 @@ export function SaveForm({ formProps, ...modalProps }: SaveFormProps) {
                   `${t('name')}${tg('validation.required')}`,
                 );
               }
+              if (!REGEX.test(value)) {
+                return Promise.reject( '20个字符以内，必须是中文或英文开头，可包含中文、数字、英文字母、_' );
+              }
               const parentId = formRef.current?.getFieldValue('parentId');
               const data = {
                 name: value,
@@ -143,8 +148,20 @@ export function SaveForm({ formProps, ...modalProps }: SaveFormProps) {
         <Input />
       </Form.Item>
       {vizType === 'DATACHART' && !(type === CommonFormTypes.SaveAs) && (
-        <Form.Item name="description" label={t('description')}>
-          <Input.TextArea />
+        <Form.Item 
+          name="description" 
+          label={t('description')}
+          rules={[
+            {
+              validator: debounce((_, value) => {
+                if (value.length>200) {
+                  return Promise.reject( '描述字符限制200以内' );
+                }
+              }, DEFAULT_DEBOUNCE_WAIT),
+            },
+          ]}
+        >
+          <Input.TextArea placeholder='限制200字符'/>
         </Form.Item>
       )}
       {vizType === 'DASHBOARD' && type === CommonFormTypes.Add && (

@@ -168,7 +168,7 @@ export const Recycle = memo(
                 })}
                 onClick={toDetail(id)}
                 actions={[
-                  allowManage && (
+                  false && (
                     <Popup
                       trigger={['click']}
                       placement="bottomRight"

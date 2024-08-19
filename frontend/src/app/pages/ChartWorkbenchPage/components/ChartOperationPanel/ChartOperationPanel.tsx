@@ -64,50 +64,61 @@ const ChartOperationPanel: FC<{
 
       if (component === LayoutComponentType.VIEW) {
         return (
-          <ChartDataViewPanel
-            dataView={dataView}
-            defaultViewId={defaultViewId}
-            onDataViewChange={onDataViewChange}
-            chartConfig={chartConfig}
-          />
+          <>
+            <span>ChartDataViewPanel</span>
+            <ChartDataViewPanel
+              dataView={dataView}
+              defaultViewId={defaultViewId}
+              onDataViewChange={onDataViewChange}
+              chartConfig={chartConfig}
+            />
+          </>
         );
       }
       if (component === LayoutComponentType.CONFIG) {
         return (
-          <ChartConfigPanel
-            dataView={dataView}
-            chartId={chart?.meta?.id}
-            chartConfig={chartConfig}
-            expensiveQuery={expensiveQuery}
-            onChange={onChartConfigChange}
-          />
+          <>
+            <span>ChartConfigPanel</span>
+            <ChartConfigPanel
+              dataView={dataView}
+              chartId={chart?.meta?.id}
+              chartConfig={chartConfig}
+              expensiveQuery={expensiveQuery}
+              onChange={onChartConfigChange}
+            />
+          </>
         );
       }
       if (component === LayoutComponentType.PRESENT) {
         return (
-          <ChartPresentWrapper
-            containerHeight={
-              layout.getNodeById('present-wrapper').getRect().height
-            }
-            containerWidth={
-              layout.getNodeById('present-wrapper').getRect().width
-            }
-            dataView={dataView}
-            chart={chart}
-            dataset={dataset}
-            expensiveQuery={expensiveQuery}
-            allowQuery={allowQuery}
-            chartConfig={chartConfig}
-            onChartChange={onChartChange}
-            onRefreshDataset={onRefreshDataset}
-            onCreateDownloadDataTask={onCreateDownloadDataTask}
-            selectedItems={selectedItems}
-          />
+          <>
+            <span>ChartPresentWrapper</span>
+            <ChartPresentWrapper
+              containerHeight={
+                layout.getNodeById('present-wrapper').getRect().height
+              }
+              containerWidth={
+                layout.getNodeById('present-wrapper').getRect().width
+              }
+              dataView={dataView}
+              chart={chart}
+              dataset={dataset}
+              expensiveQuery={expensiveQuery}
+              allowQuery={allowQuery}
+              chartConfig={chartConfig}
+              onChartChange={onChartChange}
+              onRefreshDataset={onRefreshDataset}
+              onCreateDownloadDataTask={onCreateDownloadDataTask}
+              selectedItems={selectedItems}
+            />
+          </>
         );
       }
     };
 
     return (
+      <>
+      <span>StyledChartOperationPanel</span>
       <StyledChartOperationPanel backend={HTML5Backend}>
         <FlexLayout.Layout
           model={layout}
@@ -115,6 +126,7 @@ const ChartOperationPanel: FC<{
           factory={layoutFactory}
         />
       </StyledChartOperationPanel>
+      </>
     );
   },
 );

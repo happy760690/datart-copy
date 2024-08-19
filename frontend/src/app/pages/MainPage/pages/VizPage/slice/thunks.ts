@@ -15,8 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { message } from 'antd';
 import { ChartDataRequestBuilder } from 'app/models/ChartDataRequestBuilder';
 import {
   Dashboard,
@@ -31,6 +31,7 @@ import { IChartDrillOption } from 'app/types/ChartDrillOption';
 import { ChartDTO } from 'app/types/ChartDTO';
 import { convertToChartDto } from 'app/utils/ChartDtoHelper';
 import { filterSqlOperatorName } from 'app/utils/internalChartHelper';
+// import { reject } from 'lodash';
 import { RootState } from 'types';
 import { request2 } from 'utils/request';
 import { vizActions } from '.';
@@ -182,13 +183,24 @@ export const editFolder = createAsyncThunk<
   const folders = selectVizs(getState());
   const origin = folders.find(({ id }) => id === folder.id)!;
   const merged = { ...origin, ...folder };
-  await request2<boolean>({
-    url: `/viz/folders/${folder.id}`,
-    method: 'PUT',
-    data: merged,
-  });
-  resolve();
-  return merged;
+  try {
+    const res = await request2<boolean>({
+      url: `/viz/folders/${folder.id}`,
+      method: 'PUT',
+      data: merged,
+    });
+    const { success, message: m } = res ?? {};
+    console.log(res,'res')
+    if (success) {
+      resolve();
+      return merged;
+    } else {
+      message.error(m);
+      return origin;
+    }
+  } catch (err) {
+    return origin;
+  }
 });
 
 export const unarchiveViz = createAsyncThunk<void, UnarchiveVizParams>(

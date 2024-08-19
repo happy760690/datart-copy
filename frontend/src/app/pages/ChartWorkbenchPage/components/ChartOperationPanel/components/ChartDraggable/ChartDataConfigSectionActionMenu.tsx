@@ -184,7 +184,10 @@ const ChartDataConfigSectionActionMenu: FC<
       {getModalActions(config?.actions, type, category).map(actionName => (
         <Menu.Item
           key={actionName}
-          onClick={() => onOpenModal(uid)(actionName)}
+          onClick={() => {
+            console.log({actionName,uid}, '{actionName,uid}');
+            return onOpenModal(uid)(actionName);
+          }}
         >
           {t(actionName)}
         </Menu.Item>

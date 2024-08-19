@@ -109,6 +109,7 @@ const ChartDraggableElementField: FC<{
         );
       }
 
+      // todo
       return (
         <ChartDataConfigSectionActionMenu
           uid={columnConfig.uid!}
@@ -163,7 +164,7 @@ const ChartDraggableElementField: FC<{
         destroyPopupOnHide={true}
         overlay={renderActionExtensionMenu()}
         overlayClassName="datart-data-section-dropdown"
-        trigger={['click']}
+        trigger={['hover']}
       >
         <StyledWrapper className={classnames({ replace: showReplaceMenu })}>
           {config?.actions && <DownOutlined style={{ marginRight: '10px' }} />}

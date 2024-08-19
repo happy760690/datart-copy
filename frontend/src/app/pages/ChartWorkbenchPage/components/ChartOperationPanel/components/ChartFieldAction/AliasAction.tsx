@@ -16,12 +16,14 @@
  * limitations under the License.
  */
 
-import { Input, Space } from 'antd';
+import { Input, Space, Form } from 'antd';
 import { FormItemEx } from 'app/components';
 import useI18NPrefix from 'app/hooks/useI18NPrefix';
 import { ChartDataSectionField } from 'app/types/ChartConfig';
 import { getColumnRenderOriginName } from 'app/utils/internalChartHelper';
 import { updateBy } from 'app/utils/mutation';
+import debounce from 'debounce-promise';
+import { DEFAULT_DEBOUNCE_WAIT } from 'globalConstants';
 import { FC, useState } from 'react';
 import styled from 'styled-components/macro';
 
@@ -37,6 +39,7 @@ const AliasAction: FC<{
   const t = useI18NPrefix(`viz.palette.data.actions`);
   const [aliasName, setAliasName] = useState(config?.alias?.name);
   const [nameDesc, setNameDesc] = useState(config?.alias?.desc);
+  const REGEX = /^[a-zA-Z\u4e00-\u9fff][a-zA-Z0-9_\u4e00-\u9fff]{0,19}$/;
 
   const onChange = (alias, desc) => {
     const newConfig = updateBy(config, draft => {
@@ -52,22 +55,53 @@ const AliasAction: FC<{
       <FormItemEx {...formItemLayout} label={t('alias.fieldName')}>
         {getColumnRenderOriginName(config)}
       </FormItemEx>
-      <FormItemEx {...formItemLayout} label={t('alias.name')}>
+      <Form.Item
+        {...formItemLayout}
+        label={t('alias.name')}
+        name="alias.name"
+        rules={[
+          {
+            validator: debounce((_, value) => {
+              if ( value && !REGEX.test(value)) {
+                return Promise.reject(
+                  '20个字符以内，必须是中文或英文开头，可包含中文、数字、英文字母、_',
+                );
+              }
+            }, DEFAULT_DEBOUNCE_WAIT),
+          },
+        ]}
+      >
         <Input
           value={aliasName}
           onChange={({ target: { value } }) => {
             onChange(value, nameDesc);
           }}
         />
-      </FormItemEx>
-      <FormItemEx {...formItemLayout} label={t('alias.description')}>
-        <Input
+      </Form.Item>
+      <Form.Item 
+        {...formItemLayout} 
+        label={t('alias.description')}
+        name="alias.description"
+        rules={[
+          {
+            validator: debounce((_, value) => {
+              if ( value && value.length > 200) {
+                return Promise.reject(
+                  '字符限制200以内',
+                );
+              }
+            }, DEFAULT_DEBOUNCE_WAIT),
+          },
+        ]}
+      >
+        <Input.TextArea
           value={nameDesc}
           onChange={({ target: { value } }) => {
             onChange(aliasName, value);
           }}
+          placeholder='限制200字符'
         />
-      </FormItemEx>
+      </Form.Item>
     </StyledAliasAction>
   );
 };

@@ -214,11 +214,13 @@ module.exports = {
     proxy: {
       '/api/v1': {
         changeOrigin: true,
-        target: 'http://localhost:8080/',
+        // target: 'http://localhost:8080/',
+        target: 'http://192.168.100.100:8080/',
       },
       '/resources': {
         changeOrigin: true,
-        target: 'http://localhost:8080/',
+        // target: 'http://localhost:8080/',
+        target: 'http://192.168.100.100:8080/',
       },
     },
     historyApiFallback: {

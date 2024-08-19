@@ -140,7 +140,9 @@ const ChartPresentPanel: FC<{
           )}
           {ChartPresentType.RAW === chartType && (
             <TableWrapper>
+              {/* todo 改成滚动条table */}
               <Table
+                scroll={{ y: '60vh' }}
                 size="small"
                 dataSource={dataset?.rows}
                 columns={dataset?.columns?.map((col, index) => ({
@@ -163,6 +165,7 @@ const ChartPresentPanel: FC<{
 
     return (
       <StyledChartPresentPanel>
+        <span>097sdfhsjg</span>
         {expensiveQuery && allowQuery && (
           <ReloadMask>
             <ReloadOutlined
@@ -172,17 +175,25 @@ const ChartPresentPanel: FC<{
             />
           </ReloadMask>
         )}
+        <span>097sdfhsjg2222</span>
+        {/* tabs */}
         <Row justify="end">
           <Col>
             <ChartTypeSelector
               type={chartType}
               translate={translate}
-              onChange={setChartType}
+              onChange={type => {
+                console.log({ type, chartType }, 'xxxx');
+                setChartType(type);
+              }}
               onCreateDownloadDataTask={onCreateDownloadDataTask}
             />
           </Col>
         </Row>
+        <span>sdfj324h</span>
+        {/* view */}
         {renderReusableChartContainer()}
+        <span>098sdf3</span>
       </StyledChartPresentPanel>
     );
   },

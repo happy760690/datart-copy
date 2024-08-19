@@ -179,6 +179,7 @@ export const FolderTree = memo(({ treeData }: FolderTreeProps) => {
         PermissionLevels.Manage,
       );
       return (
+        <>
         <TreeTitle>
           <h4>{`${title}`}</h4>
           {isAuthorized || allowEnableViz ? (
@@ -246,6 +247,7 @@ export const FolderTree = memo(({ treeData }: FolderTreeProps) => {
             ''
           )}
         </TreeTitle>
+        </>
       );
     },
     [archive, moreMenuClick, tg, allowEnableViz, t, isOwner, permissionMap],
@@ -261,10 +263,12 @@ export const FolderTree = memo(({ treeData }: FolderTreeProps) => {
   );
 
   const onDrop = info => {
+    console.log(info,'info');
     onDropTreeFn({
       info,
       treeData,
       callback: (id, parentId, index) => {
+        console.log({id, parentId, index},'id, parentId, index');
         dispatch(
           updateViewBase({
             view: {

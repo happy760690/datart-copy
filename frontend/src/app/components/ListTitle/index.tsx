@@ -138,6 +138,8 @@ export function ListTitle({
           placeholder={t('searchValue')}
           bordered={false}
           onChange={onSearch}
+          // Input框 点击清除图标删除内容
+          allowClear
         />
       </Searchbar>
     </Wrapper>

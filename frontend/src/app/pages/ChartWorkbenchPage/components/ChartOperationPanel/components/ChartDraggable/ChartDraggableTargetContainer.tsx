@@ -276,6 +276,7 @@ export const ChartDraggableTargetContainer: FC<ChartDataConfigSectionProps> =
     };
 
     const renderDropItems = () => {
+      // TODO
       if (
         !currentConfig.rows ||
         !currentConfig?.rows?.filter(Boolean)?.length
@@ -311,9 +312,10 @@ export const ChartDraggableTargetContainer: FC<ChartDataConfigSectionProps> =
               return columnConfig.category ===
                 ChartDataViewFieldCategory.Hierarchy ? (
                 <ChartDraggableElementHierarchy {...contentProps} />
-              ) : (
+                ) : (
+                  // todo 
                 <ChartDraggableElementField {...contentProps} />
-              );
+                );
             }}
             moveCard={onDraggableItemMove}
             onDelete={handleOnDeleteItem(columnConfig)}

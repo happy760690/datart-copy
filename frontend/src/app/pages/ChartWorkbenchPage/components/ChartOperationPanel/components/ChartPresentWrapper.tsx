@@ -76,27 +76,27 @@ const ChartPresentWrapper: FC<{
             />
           </div>
           <span>232fdf</span>
-          <ChartPresentPanel
-            containerHeight={
-              (containerHeight || 0) -
-              borderWidth -
-              (ChartGraphPanelRef?.current?.offsetHeight || 0)
-            }
-            containerWidth={(containerWidth || 0) - borderWidth}
-            chart={chart}
-            dataset={dataset}
-            expensiveQuery={expensiveQuery}
-            allowQuery={allowQuery}
-            chartConfig={chartConfig}
-            onRefreshDataset={onRefreshDataset}
-            onCreateDownloadDataTask={onCreateDownloadDataTask}
-            selectedItems={selectedItems}
-            dataView={dataView}
-          />
-        <span>97adhf23</span>
-
+          <div>
+            <ChartPresentPanel
+              containerHeight={
+                (containerHeight || 0) -
+                borderWidth -
+                (ChartGraphPanelRef?.current?.offsetHeight || 0)
+              }
+              containerWidth={(containerWidth || 0) - borderWidth}
+              chart={chart}
+              dataset={dataset}
+              expensiveQuery={expensiveQuery}
+              allowQuery={allowQuery}
+              chartConfig={chartConfig}
+              onRefreshDataset={onRefreshDataset}
+              onCreateDownloadDataTask={onCreateDownloadDataTask}
+              selectedItems={selectedItems}
+              dataView={dataView}
+            />
+          </div>
+          <span>97adhf23</span>
         </ChartI18NContext.Provider>
-
       </StyledChartPresentWrapper>
     );
   },
@@ -111,4 +111,9 @@ const StyledChartPresentWrapper = styled.div<{ borderWidth }>`
   padding: ${p => p.borderWidth}px ${p => p.borderWidth}px
     ${p => p.borderWidth}px 0;
   background-color: ${p => p.theme.bodyBackground};
+`;
+
+const styledChartPresentPanel = styled.div`
+height: auto;
+max-height: 60vh;
 `;

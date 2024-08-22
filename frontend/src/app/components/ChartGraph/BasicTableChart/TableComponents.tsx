@@ -22,6 +22,7 @@ export const TableComponentsTd = ({
 
 export const ResizableTitle = props => {
   const { onResize, width, ...restProps } = props;
+  console.log(restProps,'restProps');
 
   if (!width) {
     return <th {...restProps} />;

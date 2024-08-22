@@ -154,9 +154,10 @@ export function SaveForm({ formProps, ...modalProps }: SaveFormProps) {
           rules={[
             {
               validator: debounce((_, value) => {
-                if (value.length>200) {
+                if (value && value?.length>200) {
                   return Promise.reject( '描述字符限制200以内' );
                 }
+                return Promise.resolve();
               }, DEFAULT_DEBOUNCE_WAIT),
             },
           ]}

@@ -85,11 +85,12 @@ const AliasAction: FC<{
         rules={[
           {
             validator: debounce((_, value) => {
-              if ( value && value.length > 200) {
+              if ( value && value?.length > 200) {
                 return Promise.reject(
                   '字符限制200以内',
                 );
               }
+              return Promise.resolve();
             }, DEFAULT_DEBOUNCE_WAIT),
           },
         ]}

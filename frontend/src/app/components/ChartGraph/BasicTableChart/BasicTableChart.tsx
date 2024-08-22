@@ -641,6 +641,7 @@ class BasicTableChart extends ReactChart {
               { ...fontStyle },
             );
           }
+          // todo 修改header的排序缓存
           return (
             <ResizableTitle
               {...rest}

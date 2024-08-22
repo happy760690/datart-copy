@@ -127,22 +127,26 @@ const ChartPresentPanel: FC<{
 
       return (
         <StyledReusableChartContainer>
+          {console.log(chart,'chart')}
           {ChartPresentType.GRAPH === chartType && (
             <>
+              <span>3453mjbm53</span>
               <ChartDrillContextMenu
                 chartConfig={chartConfig}
                 metas={dataView?.meta}
               >
                 {renderGraph(containerId, chart, chartConfig, style)}
               </ChartDrillContextMenu>
+              <span>90789dsvdf6</span>
               <ChartDrillPaths chartConfig={chartConfig} />
+              <span>32432lawerw3453</span>
             </>
           )}
           {ChartPresentType.RAW === chartType && (
             <TableWrapper>
               {/* todo 改成滚动条table */}
               <Table
-                scroll={{ y: '60vh' }}
+                // scroll={{ y: '60vh' }}
                 size="small"
                 dataSource={dataset?.rows}
                 columns={dataset?.columns?.map((col, index) => ({
@@ -192,7 +196,9 @@ const ChartPresentPanel: FC<{
         </Row>
         <span>sdfj324h</span>
         {/* view */}
+        <div style={{overflowY:'auto', maxHeight:'60vh'}}>
         {renderReusableChartContainer()}
+        </div>
         <span>098sdf3</span>
       </StyledChartPresentPanel>
     );
